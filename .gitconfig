@@ -1,0 +1,12 @@
+[user]
+	email = yt1272008@gmail.com
+	name = 9u35x
+[http]
+	postBuffer = 524288000
+	lowSpeedLimit = 0
+	lowSpeedTime = 999999
+[safe]
+	directory = /storage/emulated/0/Download/world_order_mobile
+	directory = /storage/emulated/0/Download/fatoumti
+[credential]
+	helper = store

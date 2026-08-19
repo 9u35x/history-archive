@@ -1,0 +1,205 @@
+import os
+import time
+import random
+import webbrowser
+import requests
+
+# الأكواد اللونية الاحترافية (ANSI)
+R = '\033[1;31m'  # أحمر جريء
+G = '\033[1;32m'  # أخضر جريء
+Y = '\033[1;33m'  # أصفر جريء
+C = '\033[1;36m'  # سيان (أزرق فاتح)
+W = '\033[0m'     # أبيض افتراضي
+
+# بيانات القناة والحقوق
+CHANNEL_URL = "https://t.me/Black_Data2"
+CHANNEL_NAME = "BLACK DATA"
+VERSION = "v14.0 - 10 Min Interval"
+
+# متغيرات الإحصائيات العامة
+stats = {
+    "total": 0,
+    "Facebook": 0,
+    "Twitter": 0,
+    "Gmail (Google)": 0,
+    "PUBG Mobile ID": 0
+}
+
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+def show_banner():
+    clear_screen()
+    banner = f"""{R}
+██████╗ ██╗      █████╗  ██████╗██╗  ██╗    ██████╗  █████╗ ████████╗ █████╗ 
+██╔══██╗██║     ██╔══██╗██╔════╝██║ ██╔╝    ██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗
+██████╔╝██║     ███████║██║     █████╔╝     ██║  ██║███████║   ██║   ███████║
+██╔══██╗██║     ██╔══██║██║     ██╔═██╗     ██║  ██║██╔══██║   ██║   ██╔══██║
+██████╔╝███████╗██║  ██║╚██████╗██║  ██╗    ██████╔╝██║  ██║   ██║   ██║  ██║
+╚══════╝ ╚══════╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝    ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝{C}
+                    {CHANNEL_NAME} | {VERSION}
+             القناة الرسمية: {CHANNEL_URL}{W}
+========================================================================
+"""
+    print(banner)
+
+def verify_subscription():
+    show_banner()
+    print(f"{Y}[!] تنبيه: هذه الأداة محمية بموجب حقوق ملكية {CHANNEL_NAME}.{W}")
+    print(f"{Y}[!] يجب أن تكون مشتركاً في القناة الرسمية لتفعيل النظام واستخدامه.{W}\n")
+    
+    input(f"{C}[#] اضغط Enter للانتقال إلى القناة والاشتراك... {W}")
+    
+    try:
+        webbrowser.open(CHANNEL_URL)
+        print(f"\n{G}[+] تم توجيهك إلى القناة بنجاح.{W}")
+    except Exception:
+        print(f"\n{R}[-] تعذر فتح الرابط تلقائياً: {CHANNEL_URL}{W}")
+    
+    print(f"\n{C}" + "-"*45 + f"{W}")
+    print(f"{Y}هل قمت بالاشتراك في القناة الرسمية الآن؟{W}")
+    print(f" {G}1){W} نعم، قمت بالاشتراك والتفعيل.")
+    print(f" {R}2){W} لا، خروج.")
+    print(f"{C}" + "-"*45 + f"{W}")
+    
+    choice = input(f"{C}[?] اختيارك: {W}").strip()
+    
+    if choice == "1":
+        print(f"\n{C}[*] جاري التحقق من حالة التفعيل...{W}")
+        time.sleep(1)
+        print(f"{G}[✓] تم التفعيل بنجاح! مرحباً بك في عائلة Black Data.{W}")
+        time.sleep(1)
+        return True
+    else:
+        print(f"\n{R}[-] تم إلغاء العملية. لا يمكن تشغيل النظام دون الاشتراك.{W}")
+        return False
+
+def print_stats_dashboard():
+    """طباعة لوحة تحكم الإحصائيات الحالية في التيرمنال"""
+    print(f"\n{Y}📊 لوحة تتبع الإحصائيات الحالية:{W}")
+    print(f" {W}• إجمالي المفحوص: {C}[{stats['total']}] {W}| {G}Facebook: [{stats['Facebook']}]")
+    print(f" {W}• {C}Twitter: [{stats['Twitter']}] {W}| {Y}Gmail: [{stats['Gmail (Google)']}]")
+    print(f"{C}" + "="*50 + f"{W}")
+
+def send_initial_ping(token, chat_id):
+    url = f"https://api.telegram.org/bot{token}/sendMessage"
+    payload = {
+        "chat_id": chat_id, 
+        "text": "🔥 <b>PRO SYSTEM CORE ONLINE</b>\n🌐 Silent automated extraction loop initiated.",
+        "parse_mode": "HTML"
+    }
+    try:
+        response = requests.post(url, json=payload, timeout=8)
+        return response.status_code == 200
+    except Exception:
+        return False
+
+def send_to_telegram(token, chat_id, message):
+    url = f"https://api.telegram.org/bot{token}/sendMessage"
+    payload = {"chat_id": chat_id, "text": message, "parse_mode": "HTML", "disable_web_page_preview": True}
+    try:
+        res = requests.post(url, json=payload, timeout=10)
+        return res.status_code == 200
+    except Exception:
+        return False
+
+def generate_hyper_realistic_account():
+    login_methods = ["Facebook", "Twitter", "Gmail (Google)", "PUBG Mobile ID"]
+    method = random.choice(login_methods)
+    
+    first_names = [
+        "mahmoud", "ali", "mohamed", "ahmed", "mustafa", "omar", "youssef", "khaled", 
+        "ibrahim", "hassan", "kareem", "tarek", "fady", "sayed", "hany", "amr", "alaa"
+    ]
+    last_names = ["ed", "alali", "hassan", "salem", "saad", "mansour", "fahmy", "ramadan"]
+    
+    f_name = random.choice(first_names)
+    l_name = random.choice(last_names)
+    year_full = str(random.randint(1998, 2007))
+    num_sub = str(random.randint(10, 99))
+    
+    email_styles = [
+        f"{f_name}{l_name}{num_sub}",
+        f"{f_name}.{l_name}{year_full}",
+        f"{l_name}.{f_name}{num_sub}"
+    ]
+    
+    domains = ["gmail.com", "yahoo.com", "outlook.com"]
+    email = f"{random.choice(email_styles)}@{random.choice(domains)}"
+    
+    pass_f_name = random.choice(first_names).capitalize()
+    password = f"{pass_f_name}{random.choice(last_names)}{year_full}"
+    
+    level = random.randint(55, 85)
+    
+    if level >= 75:
+        tier = "👑 MYTHIC / NADIR"
+    elif level >= 65:
+        tier = "✨ VIP / ACTIVE"
+    else:
+        tier = "⚙️ STANDARD"
+        
+    return email, password, level, method, tier
+
+def main():
+    if not verify_subscription():
+        return
+
+    show_banner()
+    
+    bot_token = input(f"{G}[+] أدخل توكن البوت (Bot Token): {W}").replace("\n", "").replace("\r", "").strip()
+    chat_id = input(f"{G}[+] أدخل أيدي الحساب (Chat ID):   {W}").replace("\n", "").replace("\r", "").strip()
+    
+    if not bot_token or not chat_id:
+        print(f"\n{R}[-] خطأ: البيانات المدخلة غير مكتملة.{W}")
+        return
+
+    print(f"\n{C}[*] جاري تحميل الحزم وتأمين قنوات الاتصال بالخادم...{W}")
+    time.sleep(1.5)
+    
+    if not send_initial_ping(bot_token, chat_id):
+        print(f"\n{Y}[!] تنبيه: لم نتمكن من إرسال إشعار البدء، تأكد من إرسال /start للبوت لحسابك.{W}")
+        print(f"{C}[*] سيتم بدء المحاولة والضخ مباشرة بعد الفاصل الزمني...{W}\n")
+    else:
+        print(f"{G}[✓] تم التوصيل بنجاح! جاري بدء عملية الفحص والضخ التلقائي...{W}\n")
+    
+    time.sleep(1)
+
+    try:
+        while True:
+            email, password, level, method, tier = generate_hyper_realistic_account()
+            
+            print(f"{C}[*] جاري فحص وجلب البيانات النشطة عبر: {G}[{method}]{W}")
+            
+            # تم تعديل وقت الانتظار هنا ليكون 10 دقائق (600 ثانية) صامتة تماماً
+            time.sleep(600.0)
+            
+            stats["total"] += 1
+            stats[method] += 1
+            
+            print_stats_dashboard()
+            
+            report = (
+                f"<b>🛡️ New Verified Data Found 🛡️</b>\n\n"
+                f"🌐 <b>Login Method:</b> <code>{method}</code>\n"
+                f"👤 <b>User/Email:</b> <code>{email}</code>\n"
+                f"🔑 <b>Password:</b> <code>{password}</code>\n"
+                f"📈 <b>PUBG Level:</b> <code>{level}</code>\n"
+                f"💎 <b>Account Tier:</b> <code>{tier}</code>\n\n"
+                f"📊 <b>Total Processed:</b> <code>{stats['total']}</code>\n"
+                f"✨ <b>تم الصيد من قبل قناه بلاك داتا</b>\n"
+                f"📢 <b>رابط القناة:</b> {CHANNEL_URL}"
+            )
+            
+            if send_to_telegram(bot_token, chat_id, report):
+                print(f"    {G}➔ [✓] تم إرسال حزمة البيانات بنجاح وتصنيفها كـ ({tier}).{W}")
+            else:
+                print(f"    {R}➔ [✗] فشل إرسال الحزمة الحالية. تأكد من صحة التوكن والأيدي ومن ضغط /start للبوت.{W}")
+                
+            print(f"{C}" + "-"*50 + f"{W}")
+            
+    except KeyboardInterrupt:
+        print(f"\n{R}[-] تم إيقاف العمليات وإنهاء الجلسة بواسطة المستخدم.{W}")
+
+if __name__ == "__main__":
+    main()

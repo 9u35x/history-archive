@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:padding="24dp" android:background="#0D0D12">
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="لوحة الإدارة" android:textColor="#FFFFFF" android:textSize="22sp" android:textStyle="bold" />
+    <TextView android:id="@+id/tvAdminEmail" android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:textColor="#AAAAAA" android:layout_marginTop="4dp" android:layout_marginBottom="24dp" />
+    <TextView android:id="@+id/tvNewReportsCount" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="بلاغات جديدة: …" android:textColor="#9B5CFF" android:textSize="16sp" android:layout_marginBottom="24dp" />
+    <TextView android:id="@+id/tvOpenReports" android:layout_width="match_parent" android:layout_height="52dp"
+        android:gravity="center" android:text="مراجعة البلاغات" android:textColor="#FFFFFF"
+        android:background="#1A1A24" android:layout_marginBottom="12dp" />
+    <TextView android:id="@+id/tvOpenUsers" android:layout_width="match_parent" android:layout_height="52dp"
+        android:gravity="center" android:text="إدارة المستخدمين" android:textColor="#FFFFFF"
+        android:background="#1A1A24" android:layout_marginBottom="12dp" />
+    <TextView android:id="@+id/tvLogout" android:layout_width="match_parent" android:layout_height="52dp"
+        android:gravity="center" android:text="تسجيل الخروج" android:textColor="#FF6B6B" android:layout_marginTop="24dp" />
+</LinearLayout>
